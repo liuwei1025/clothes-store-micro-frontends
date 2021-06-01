@@ -2,10 +2,10 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
 const deps = require('./package.json').dependencies;
-
+const host = '-gray-beaver-6o0nji45.ws-us08.gitpod.io/'
 module.exports = {
   output: {
-    publicPath: 'http://localhost:3000/',
+    publicPath: `https://3000${host}`,
   },
   resolve: {
     extensions: ['.jsx', '.js', '.json'],
@@ -44,10 +44,10 @@ module.exports = {
     new ModuleFederationPlugin({
       name: 'app_shell',
       remotes: {
-        items: 'items@http://localhost:3001/remoteEntry.js',
-        checkout: 'checkout@http://localhost:3002/remoteEntry.js',
-        blog: 'blog@http://localhost:3003/remoteEntry.js',
-        shared: 'shared@http://localhost:3004/remoteEntry.js',
+        items: `items@https://3001${host}/remoteEntry.js`,
+        checkout: `checkout@https://3002${host}/remoteEntry.js`,
+        blog: `blog@https://3003${host}/remoteEntry.js`,
+        shared: `shared@https://3004${host}/remoteEntry.js`,
       },
       shared: {
         ...deps,

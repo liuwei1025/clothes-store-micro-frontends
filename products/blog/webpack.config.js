@@ -1,11 +1,12 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 
+const host = '-gray-beaver-6o0nji45.ws-us08.gitpod.io/'
 const deps = require('./package.json').dependencies;
 
 module.exports = {
   output: {
-    publicPath: 'http://localhost:3003/',
+    publicPath: `https://3003${host}`,
   },
   resolve: {
     extensions: ['.jsx', '.js', '.json'],
@@ -45,7 +46,7 @@ module.exports = {
       name: 'blog',
       filename: 'remoteEntry.js',
       remotes: {
-        shared: 'shared@http://localhost:3004/remoteEntry.js',
+        shared: `shared@https://3004${host}/remoteEntry.js`,
       },
       exposes: {
         './Routes': './src/components/routes',
